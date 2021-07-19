@@ -1,6 +1,6 @@
 import pygame
-from nestrichal.constants import GAME_WIDTH, GAME_HEIGHT
-from nestrichal.player import PLAYER
+from util.constants import GAME_WIDTH, GAME_HEIGHT
+from player.player import PLAYER
 
 FPS = 60
 WINDOW = pygame.display.set_mode((GAME_WIDTH, GAME_HEIGHT))

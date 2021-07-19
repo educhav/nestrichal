@@ -1,8 +1,10 @@
 import pygame
-from .constants import *
+from util.constants import *
 
 FRONT = pygame.image.load("Elijah.png")
+
 RIGHT = pygame.image.load("Elijah_right.png")
+LEFT = pygame.image.load("Elijah_right.png")
 
 class Player:
     def __init__(self):
