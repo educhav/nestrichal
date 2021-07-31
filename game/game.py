@@ -25,7 +25,7 @@ class Scene:
     def __init__(self, window, scene_number):
         self.window = window
         self.scene_number = scene_number
-        self.background = load(os.path.join("assets", "background", "scene1_part3.png"))
+        self.background = load(os.path.join("assets", "background", "town_demo.png"))
         self.master = Player(300, 300, 100)
         self.slaves = []
 
@@ -59,9 +59,14 @@ class Scene:
                 pygame.time.delay(tick)
                 pygame.display.update()
 
-    def fade(self):
-        pass
+    def fade_out(self):
+        fading = None
+        alpha = 0
+        veil = pygame.Surface((GAME_WIDTH, GAME_HEIGHT))
+        veil.fill((0, 0, 0))
 
+    def fade_in(self, bg):
+        pass
 
     def run(self):
         if self.scene_number == 0:
@@ -73,7 +78,8 @@ class Scene:
                             size=24, color=WHITE, 
                             x_spacing=15, y_spacing=25, 
                             left_offset=15, right_offset=15, 
-                            top_offset=15, bottom_offset=75, tick=20)
+                            top_offset=15, bottom_offset=75, tick=2)
+            self.fade_out()
 
 class Game:
     def __init__(self, window):
@@ -89,14 +95,16 @@ class Game:
         keys_pressed = pygame.key.get_pressed()
         player = self.current_scene.master
         if keys_pressed[pygame.K_w]:
-            player.y -= player.velocity * dt
+            player.y -= player.velocity * (dt / 5)
         if keys_pressed[pygame.K_s]:
-            player.y += player.velocity * dt
+            player.y += player.velocity * (dt / 5)
         if keys_pressed[pygame.K_a]:
-            player.x -= player.velocity * dt
+            player.x -= player.velocity * (dt / 5)
         if keys_pressed[pygame.K_d]:
-            player.x += player.velocity * dt
+            player.x += player.velocity * (dt / 5)
             
     def update(self, dt):
         self.handle(dt)
-        self.scenes[0].run()
+        self.scenes[0].draw_bg()
+        self.scenes[0].master.draw(self.window)
+        pygame.display.update()
