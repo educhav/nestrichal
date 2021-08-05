@@ -13,8 +13,8 @@ all: $(EXEC)
 $(EXEC): $(OBJS) $(HDRS) Makefile
 	$(CC) -o $(EXEC) $(OBJS) $(LFLAGS)
 
-$(OBJS): $(SRCS) $(HDRS) Makefile
-	$(CC) $(SRCS) -c $(CFLAGS)
+$(OBJS): $(@:.o=.c) $(HDRS) Makefile
+	$(CC) -o $@ $(@:.o=.c) -c $(CFLAGS)
 
 clean:
 	rm -f $(EXEC) $(OBJS)
