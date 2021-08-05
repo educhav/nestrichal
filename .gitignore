@@ -1,4 +1,2 @@
 scripts
-*.o
-.src/game.o
-.src/main.o
+/src/*.o
