@@ -1,2 +1,3 @@
 scripts
-src/*.o
+src/main.o
+src/game.o
